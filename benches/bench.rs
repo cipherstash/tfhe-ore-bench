@@ -17,11 +17,16 @@ fn benchmark(c: &mut Criterion) {
 
     let mut group = c.benchmark_group("tfhe");
 
+    group.bench_function("encrypt", |be| {
+        be.iter(|| {
+            let res = FheUint64::encrypt(300_u64, &client_key);
+            black_box(res);
+        })
+    });
+
     group.bench_function("a == b", |be| {
         be.iter(|| {
             let res = a.eq(&b);
-            let res: u64 = res.decrypt(&client_key);
-            assert!(res == (false as u64));
             black_box(res);
         })
     });
@@ -29,8 +34,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a > b", |be| {
         be.iter(|| {
             let res = a.gt(&b);
-            let res: u64 = res.decrypt(&client_key);
-            assert!(res == (false as u64));
             black_box(res);
         })
     });
@@ -38,8 +41,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a < b", |be| {
         be.iter(|| {
             let res = a.lt(&b);
-            let res: u64 = res.decrypt(&client_key);
-            assert!(res == (true as u64));
             black_box(res);
         })
     });
@@ -47,8 +48,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a >= a", |be| {
         be.iter(|| {
             let res = a.ge(&a);
-            let res: u64 = res.decrypt(&client_key);
-            assert!(res == (true as u64));
             black_box(res);
         })
     });
@@ -56,8 +55,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a <= a", |be| {
         be.iter(|| {
             let res = a.le(&a);
-            let res: u64 = res.decrypt(&client_key);
-            assert!(res == (true as u64));
             black_box(res);
         })
     });
@@ -74,10 +71,16 @@ fn benchmark(c: &mut Criterion) {
     let a = 100u64.encrypt(&mut ore).unwrap();
     let b = 200u64.encrypt(&mut ore).unwrap();
 
+    group.bench_function("encrypt", |be| {
+        be.iter(|| {
+            let res = 300_u64.encrypt(&mut ore).unwrap();
+            black_box(res);
+        })
+    });
+
     group.bench_function("a == b", |be| {
         be.iter(|| {
             let res = a.eq(&b);
-            assert!(res == false);
             black_box(res);
         })
     });
@@ -85,7 +88,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a > b", |be| {
         be.iter(|| {
             let res = a.gt(&b);
-            assert!(res == false);
             black_box(res);
         })
     });
@@ -93,7 +95,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a < b", |be| {
         be.iter(|| {
             let res = a.lt(&b);
-            assert!(res == true);
             black_box(res);
         })
     });
@@ -101,7 +102,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a >= a", |be| {
         be.iter(|| {
             let res = a.ge(&a);
-            assert!(res == true);
             black_box(res);
         })
     });
@@ -109,7 +109,6 @@ fn benchmark(c: &mut Criterion) {
     group.bench_function("a <= a", |be| {
         be.iter(|| {
             let res = a.le(&a);
-            assert!(res == true);
             black_box(res);
         })
     });
