@@ -1,5 +1,26 @@
+# TFHE/ORE benchmark
+
+A small benchmark suite comparing similar operations in the homomorphic encryption library [tfhe](https://crates.io/crates/tfhe) to the order revealing encryption library [ore-rs](https://crates.io/crates/ore-rs).
+
+## Running
+
+Run the benchmarks using the following command:
+
+```rs
+cargo bench
+```
+
+Performance characteristics may change if you target your native CPU.
+It might be useful to try running the following as well:
+
+```rs
+RUSTFLAGS="-Ctarget-cpu=native" cargo bench
+```
+
+## Results
+
 ```txt
-Run on an AMD Ryzen 9 3900x:
+Results from running on an AMD Ryzen 9 3900x:
 
 tfhe/encrypt            time:   [1.9684 ms 1.9721 ms 1.9755 ms]
 tfhe/a == b             time:   [110.00 ms 111.21 ms 112.40 ms]
