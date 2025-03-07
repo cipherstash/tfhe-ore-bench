@@ -20,19 +20,19 @@ RUSTFLAGS="-Ctarget-cpu=native" cargo bench
 ## Results
 
 ```txt
-Results from running on an AMD Ryzen 9 3900x:
+Results from running on an Apple M2:
 
-tfhe/encrypt            time:   [1.9684 ms 1.9721 ms 1.9755 ms]
-tfhe/a == b             time:   [110.00 ms 111.21 ms 112.40 ms]
-tfhe/a > b              time:   [188.50 ms 191.92 ms 195.34 ms]
-tfhe/a < b              time:   [186.07 ms 189.58 ms 193.16 ms]
-tfhe/a >= a             time:   [43.571 ms 43.980 ms 44.389 ms]
-tfhe/a <= a             time:   [44.045 ms 44.498 ms 44.945 ms]
+tfhe/encrypt            time:   [10.972 ms 11.316 ms 11.855 ms]
+tfhe/a == b             time:   [148.64 ms 151.43 ms 154.80 ms]
+tfhe/a > b              time:   [159.80 ms 161.58 ms 163.65 ms]
+tfhe/a < b              time:   [162.39 ms 166.15 ms 170.87 ms]
+tfhe/a >= a             time:   [24.159 ms 24.767 ms 25.546 ms]
+tfhe/a <= a             time:   [28.279 ms 29.630 ms 31.094 ms]
 
-ore/encrypt             time:   [48.028 µs 48.154 µs 48.280 µs]
-ore/a == b              time:   [238.17 ns 238.41 ns 238.68 ns]
-ore/a > b               time:   [237.78 ns 238.03 ns 238.31 ns]
-ore/a < b               time:   [239.17 ns 240.28 ns 241.57 ns]
-ore/a >= a              time:   [221.17 ns 221.31 ns 221.46 ns]
-ore/a <= a              time:   [225.81 ns 226.83 ns 227.72 ns]
+ore/encrypt             time:   [372.42 µs 373.68 µs 375.16 µs]
+ore/a == b              time:   [737.36 ns 755.64 ns 783.50 ns]
+ore/a > b               time:   [740.85 ns 750.47 ns 769.78 ns]
+ore/a < b               time:   [747.51 ns 755.29 ns 763.02 ns]
+ore/a >= a              time:   [126.00 ns 130.67 ns 136.81 ns]
+ore/a <= a              time:   [126.22 ns 129.91 ns 135.20 ns]
 ```

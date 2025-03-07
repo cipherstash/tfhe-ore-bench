@@ -6,9 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+concrete-csprng = "0.4.1"
 criterion = "0.5.1"
 ore-rs = "0.7.0"
-tfhe = { version = "0.4.1", features = [ "integer", "x86_64-unix" ] }
+tfhe = { version = "0.4.1", features = ["integer"] }
 
 [[bench]]
 name = "bench"
